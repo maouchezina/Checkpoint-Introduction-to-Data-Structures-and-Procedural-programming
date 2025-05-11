@@ -1,0 +1,42 @@
+ALGORITHM Sum_distinct_array // C'est un algorithme qui compte la somme des elements distincts de deux tableaux
+VAR
+    tab1 , tab2 :  ARRAY_OF INTEGER[];
+    sum : INTEGER :=0;// initialiser la somme a zero
+    found: BOOLEAN;
+    i, j : INTEGER
+BEGIN
+    Read(tab1);
+    Read(tab2);
+    FOR i FROM 1 TO length(tab1) STEP 1  DO //  parcourir tous les elements de tab1
+            FOR j FROM 1 TO length(tab2) STEP 1  DO // parcourir tous les elements de tab2 afin de les comparer avec chaque element de tab1
+            IF (tab1[i] = tab2[j]) THEN // Comparer chaque élément du tab1 avec les elements de tab2
+                found := true;
+                BREAK
+            END_IF
+            
+        END_FOR
+        IF (found = false) THEN// si un element de tab1 est different de tous les elements de tab2  
+            sum := sum+ tab1[i]// on ajoute cet element au somme des elments distincts sum
+        END_IF 
+    END_FOR
+    
+    // on refait les meme instructions et operation avec le deuxieme tableau tab2 
+
+
+    FOR i FROM 1 TO length(tab2) STEP 1  DO
+        FOR j FROM 1 TO length(tab1) STEP 1  DO
+            IF (tab2[i] = tab1[j]) THEN
+                found := true
+                BREAK
+            END_IF
+            END_FOR
+            IF (found = false) THEN
+                sum := sum+ tab2[i] // sum recoit la somme calculée precedement plus lesla somme des tab2[i] distincts des elements de tab1[j]
+            END_IF 
+    END_FOR
+
+
+    Write(sum);
+END
+
+

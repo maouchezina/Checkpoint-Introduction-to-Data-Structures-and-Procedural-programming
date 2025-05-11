@@ -1,0 +1,24 @@
+FUNCTION dot_product(v1: ARRAY_OF INTEGER[10], v2: ARRAY_OF INTEGER[10]) : INTEGER;// declarer une fonction dot_product qui calcule le produit scalaire de deux vecteurs et return un integer
+VAR
+    ps: INTEGER := 0;
+BEGIN
+    FOR i FROM 1 TO length(v1) STEP 1 DO
+        ps := ps + (v1[i] * v2[i])
+    END_FOR
+    RETURN ps
+END_FUNCTION
+
+ALGORITHM Check_Orthogonality// algorithm pour verifier si deux vecteurs sont orthogonaux ou pas 
+VAR
+    v1, v2: ARRAY_OF INTEGER[];
+    ps: INTEGER;
+BEGIN
+    Read(v1);
+    Read(v2);
+    ps := dot_product(v1, v2);// le produit scalaire de v1 et v2 recoit la valeur retourner par la fonction dot_product
+    IF (ps = 0) THEN
+        Write("v1 et v2 sont orthogonaux")//c'est ps egal zero alors v1 et v2 sont orthogonaux
+    ELSE
+        Write("v1 et v2 ne sont pas orthogonaux")//sinon sont pas orthogonaux
+    END_IF
+END
